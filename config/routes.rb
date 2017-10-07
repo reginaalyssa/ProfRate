@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   resources :professors do
     collection do
       post :add_course
