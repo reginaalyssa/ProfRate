@@ -24,11 +24,13 @@
   <div class="field">
     <%= form.label :professor_id %>
     <%= form.select :professor_id, @professors.collect { |prof| [prof.full_name, prof.id] } %>
+    <!--<%= form.text_field :professor_id, id: :review_professor_id %>-->
   </div>
 
   <div class="field">
     <%= form.label :course_id %>
     <%= form.select :course_id, @courses.collect { |course| [course.title, course.id] } %>
+    <!--<%= form.text_field :course_id, id: :review_course_id %>-->
   </div>
 
   <div class="actions">

@@ -18,8 +18,8 @@
       <tr>
         <td><%= review.rating %></td>
         <td><%= review.description %></td>
-        <td><%= review.professor %></td>
-        <td><%= review.course %></td>
+        <td><%= review.professor.full_name %></td>
+        <td><%= review.course.title %></td>
         <td><%= link_to 'Show', review %></td>
         <td><%= link_to 'Edit', edit_review_path(review) %></td>
         <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>

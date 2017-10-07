@@ -21,6 +21,8 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
+    @professors = Professor.all
+    @courses = Course.all
   end
 
   # POST /reviews
