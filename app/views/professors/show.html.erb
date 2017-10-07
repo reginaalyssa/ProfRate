@@ -14,7 +14,7 @@
 
 <% if @courses %>
     <% @courses.each do |course| %>
-        <p><%= link_to course.title, course_path(course.id) %></p>
+        <p><%= link_to course.title, reviews_professors_path(@professor.id, course.id) %></p>
     <% end %>
 <% end %>
 

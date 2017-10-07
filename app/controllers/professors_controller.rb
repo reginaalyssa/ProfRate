@@ -131,6 +131,14 @@ class ProfessorsController < ApplicationController
     end
   end
 
+  def display_reviews_of_subject
+    if Professor.exists?(params[:id]) and Course.exists?(params[:course_id])
+      @reviews = Review.where(professor_id: params[:id], course_id: params[:course_id])
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_professor

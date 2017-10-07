@@ -1,0 +1,12 @@
+<h1>Reviews</h1>
+<% if !@reviews.empty? %>
+  <% @reviews.each do |review| %>
+      <p><%= review.formatted_rating %></p>
+        <% binding.pry %>
+      <p><%= review.description %></p>
+      <p><%= review.professor.full_name %></p>
+      <p><%= review.course.title %></p>
+  <% end %>
+<% else %>
+    <p>No reviews have been made yet.</p>
+<% end %>
