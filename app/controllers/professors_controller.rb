@@ -14,12 +14,17 @@ class ProfessorsController < ApplicationController
 
   # GET /professors/new
   def new
-    if params[:course_id]
-      course = Course.find(params[:course_id])
-      @course_title = course.title
-      @course_id = course.id
-    end
     @professor = Professor.new
+
+    if params[:course_id]
+      if Course.exists?(params[:course_id])
+        course = Course.find(params[:course_id])
+        @course_title = course.title
+        @course_id = course.id
+      else
+        @professor.errors[:course] << ["Couldn't find Course with 'id'=#{params[:course_id]}"]
+      end
+    end
   end
 
   # GET /professors/1/edit
@@ -44,8 +49,6 @@ class ProfessorsController < ApplicationController
         format.json { render json: @professor.errors, status: :unprocessable_entity }
       end
     end
-
-    binding.pry
   end
 
   # PATCH/PUT /professors/1
