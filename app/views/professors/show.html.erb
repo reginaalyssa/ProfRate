@@ -10,5 +10,11 @@
   <%= @professor.last_name %>
 </p>
 
+<% if @courses %>
+    <% @courses.each do |course| %>
+        <p><%= course.title %></p>
+    <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_professor_path(@professor) %> |
 <%= link_to 'Back', professors_path %>
