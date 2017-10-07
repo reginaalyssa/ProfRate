@@ -1,10 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<% if @professors %>
-    <% @professors.each do |prof| %>
-      <p><%= prof.full_name %></p>
-    <% end %>
-<% end %>
+<%= link_to 'Add Professor', new_professor_path(course_id: @course.id) %>
+
 <p>
   <strong>Title:</strong>
   <%= @course.title %>
@@ -14,6 +11,12 @@
   <strong>Description:</strong>
   <%= @course.description %>
 </p>
+
+<% if @professors %>
+    <% @professors.each do |prof| %>
+        <p><%= prof.full_name %></p>
+    <% end %>
+<% end %>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

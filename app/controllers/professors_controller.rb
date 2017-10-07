@@ -14,6 +14,11 @@ class ProfessorsController < ApplicationController
 
   # GET /professors/new
   def new
+    if params[:course_id]
+      course = Course.find(params[:course_id])
+      @course_title = course.title
+      @course_id = course.id
+    end
     @professor = Professor.new
   end
 
