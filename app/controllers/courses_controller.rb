@@ -16,6 +16,17 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+
+    if params[:professor_id]
+      if Professor.exists?(params[:professor_id])
+        professor = Professor.find(params[:professor_id])
+        @professor_name = professor.full_name
+        @professor_id = professor.id
+      else
+        @course.errors[:professor] << ["Couldn't find Professor with 'id'=#{params[:professor_id]}"]
+        @professor_id = -1
+      end
+    end
   end
 
   # GET /courses/1/edit
@@ -27,15 +38,42 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
 
+    # no professor_id given, save only Course
+    if params[:course][:professor_id].nil?
+      save_course = true
+
+    # professor_id exists, save Course and create association with Professor
+    elsif Professor.exists?(params[:course][:professor_id])
+      save_course = true
+      create_association = true
+
+    # professor_id is invalid, return error
+    else
+      @course.errors[:professor] << ["Not found, submitting this form will add a new course but will not add an association with any professor"]
+      return_error = true
+    end
+
     respond_to do |format|
-      if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
-      else
+      if save_course
+        if @course.save
+          format.html { redirect_to @course, notice: 'Course was successfully created.' }
+          format.json { render :show, status: :created, location: @course }
+        else
+          return_error = true
+        end
+      end
+
+      if return_error
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
     end
+
+    if create_association
+      professor = Professor.find(params[:course][:professor_id])
+      @course.professors << professor
+    end
+
   end
 
   # PATCH/PUT /courses/1

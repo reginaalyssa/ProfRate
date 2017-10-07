@@ -49,7 +49,7 @@ class ProfessorsController < ApplicationController
 
     # course_id is invalid, return error
     else
-      @professor.errors[:course] << ["Not found, creating professor will not add an association with any course"]
+      @professor.errors[:course] << ["Not found, submitting this form will add a new professor but will not add an association with any course"]
       return_error = true
     end
 
@@ -68,8 +68,6 @@ class ProfessorsController < ApplicationController
         format.json { render json: @professor.errors, status: :unprocessable_entity }
       end
     end
-
-
 
     if create_association
       course = Course.find(params[:professor][:course_id])

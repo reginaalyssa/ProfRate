@@ -21,6 +21,10 @@
     <%= form.text_area :description, id: :course_description %>
   </div>
 
+  <% if @professor_id %>
+      <%= form.hidden_field :professor_id, :value => @professor_id %>
+  <% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>

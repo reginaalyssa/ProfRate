@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Add Course', new_course_path(professor_id: @professor.id) %>
+
 <p>
   <strong>First name:</strong>
   <%= @professor.first_name %>
