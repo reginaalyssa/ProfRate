@@ -30,11 +30,21 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
 
+    if Course.exists?(params[:review][:course_id]) and Professor.exists?(params[:review][:professor_id])
+      course = Course.find(params[:review][:course_id])
+      professor = Professor.find(params[:review][:professor_id])
+      if !professor.courses.exists?(course.id)
+        professor.courses << course
+        professor.save
+      end
+    end
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
+        @professors = Professor.all
+        @courses = Course.all
         format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
@@ -49,6 +59,8 @@ class ReviewsController < ApplicationController
         format.html { redirect_to @review, notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
+        @professors = Professor.all
+        @courses = Course.all
         format.html { render :edit }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
