@@ -10,7 +10,7 @@ class ProfessorsController < ApplicationController
   # GET /professors/1
   # GET /professors/1.json
   def show
-    @courses = set_professor.courses
+    @courses = @professor.courses
   end
 
   # GET /professors/new

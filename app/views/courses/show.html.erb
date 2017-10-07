@@ -18,5 +18,14 @@
     <% end %>
 <% end %>
 
+Others:
+<% if @other_professors %>
+    <%= form_for :add_professor, url: add_professor_courses_path do |form| %>
+      <%= form.select :professor_id, @other_professors.collect { |prof| [prof.full_name, prof.id] } %>
+      <%= form.hidden_field :course_id, :value => @course.id %>
+      <%= form.submit "Add Professor" %>
+    <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

@@ -10,7 +10,9 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @professors = set_course.professors
+    @professors = @course.professors
+    @other_professors = Professor.all - @professors
+
   end
 
   # GET /courses/new
@@ -97,6 +99,37 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # POST /add_professor
+  # Add existing professor to course
+  def add_professor
+    professor_id = params[:add_professor][:professor_id]
+    course_id = params[:add_professor][:course_id]
+
+    if Professor.exists?(professor_id) and Course.exists?(course_id)
+      professor = Professor.find(professor_id)
+      @course = Course.find(course_id)
+      @course.professors << professor
+      create_association = true
+    else
+      return_error = true
+    end
+
+    if create_association
+      respond_to do |format|
+        if @course.save
+          format.html { redirect_to @course, notice: 'Professor was successfully added to course.' }
+          format.json { head :no_content }
+        else
+          return_error = true
+        end
+      end
+    end
+
+    if return_error
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 
