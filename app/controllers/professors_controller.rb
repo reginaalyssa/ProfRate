@@ -23,6 +23,7 @@ class ProfessorsController < ApplicationController
         @course_id = course.id
       else
         @professor.errors[:course] << ["Couldn't find Course with 'id'=#{params[:course_id]}"]
+        @course_id = -1
       end
     end
   end
@@ -35,19 +36,43 @@ class ProfessorsController < ApplicationController
   # POST /professors.json
   def create
     @professor = Professor.new(professor_params)
-    if params[:professor][:course_id]
-      @course = Course.find(params[:professor][:course_id])
-      @professor.courses << @course
+
+    # no course_id given, save only Professor
+    if params[:professor][:course_id].nil?
+      save_professor = true
+
+    # course_id exists, save Professor and create association with Course
+    elsif Course.exists?(params[:professor][:course_id])
+      save_professor = true
+      create_association = true
+
+    # course_id is invalid, return error
+    else
+      @professor.errors[:course] << ["Not found, creating professor will not add an association with any course"]
+      return_error = true
     end
 
     respond_to do |format|
-      if @professor.save
-        format.html { redirect_to @professor, notice: 'Professor was successfully created.' }
-        format.json { render :show, status: :created, location: @professor }
-      else
+      if save_professor
+        if @professor.save
+          format.html { redirect_to @professor, notice: 'Professor was successfully created.' }
+          format.json { render :show, status: :created, location: @professor }
+        else
+          return_error = true
+        end
+      end
+
+      if return_error
         format.html { render :new }
         format.json { render json: @professor.errors, status: :unprocessable_entity }
       end
+    end
+
+
+
+    if create_association
+      course = Course.find(params[:professor][:course_id])
+      @professor.courses << course
     end
   end
 
