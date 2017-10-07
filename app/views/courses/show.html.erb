@@ -14,7 +14,7 @@
 
 <% if @professors %>
     <% @professors.each do |prof| %>
-        <p><%= prof.full_name %></p>
+      <p><%= link_to prof.full_name, professor_path(prof.id) %></p>
     <% end %>
 <% end %>
 
