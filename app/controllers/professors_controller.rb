@@ -30,6 +30,10 @@ class ProfessorsController < ApplicationController
   # POST /professors.json
   def create
     @professor = Professor.new(professor_params)
+    if params[:professor][:course_id]
+      @course = Course.find(params[:professor][:course_id])
+      @professor.courses << @course
+    end
 
     respond_to do |format|
       if @professor.save
@@ -40,6 +44,8 @@ class ProfessorsController < ApplicationController
         format.json { render json: @professor.errors, status: :unprocessable_entity }
       end
     end
+
+    binding.pry
   end
 
   # PATCH/PUT /professors/1
