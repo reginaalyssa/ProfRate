@@ -1,51 +1,69 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Add Course', new_course_path(professor_id: @professor.id) %>
-
-<p>
-  <strong>First name:</strong>
-  <%= @professor.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @professor.last_name %>
-</p>
-
-<p>Average Rating: <%= number_with_precision(@total_average_rating, :precision => 2) %></p>
-
-<% if @courses %>
-    <table>
-      <thead>
-      <tr>
-        <th>Course</th>
-        <th>Rating</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <% @courses.zip(@course_professor_association) do |course, association| %>
-          <tr>
-            <td><%= link_to course.title, reviews_professors_path(@professor.id, course.id) %></td>
-            <td>
-              <% if association.average_rating.nil? %>
-                  No reviews yet
-              <% else %>
-                  <%= number_with_precision(association.average_rating, :precision => 2) %>
-              <% end %>
-            </td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-<% end %>
-
 <% if !@other_courses.empty? %>
-    <%= form_for :add_course, url: add_course_professors_path do |form| %>
-        <%= form.select :course_id, @other_courses.collect { |course| [course.title, course.id] } %>
-        <%= form.hidden_field :professor_id, :value => @professor.id %>
-        <%= form.submit "Add Course" %>
-    <% end %>
+  <div class="navbar-below">
+    <div class="container">
+      <p>Add an existing professor to this class: </p>
+      <%= form_for :add_course, url: add_course_professors_path do |form| %>
+          <%= form.select :course_id, @other_courses.collect { |course| [course.title, course.id] } %>
+          <%= form.hidden_field :professor_id, :value => @professor.id %>
+          <%= form.submit "Add Existing Course", class: "btn btn-md btn-blue" %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
-<%= link_to 'Back', professors_path %>
+<div class="container">
+  <div class="main-container">
+    <p id="notice"><%= notice %></p>
+    <div class="row">
+      <div class="col-md-8">
+        <h1><%= @professor.full_name %></h1>
+        <p>
+          <span class="text-bold">Average Rating:</span>
+          <% if !@total_average_rating.nil? %>
+              <%= number_with_precision(@total_average_rating, :precision => 2) %>
+          <% else %>
+              No ratings yet
+          <% end %>
+        </p>
+      </div>
+      <div class="col-md-4 ml-auto">
+        <%= link_to 'Add New Course', new_course_path(professor_id: @professor.id), class: "btn btn-md btn-custom btn-blue float-right" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <% if !@courses.empty? %>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Course</th>
+              <th>Rating</th>
+              <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @courses.zip(@course_professor_association) do |course, association| %>
+                <tr>
+                  <td><%= link_to course.title, course_path(course.id) %></td>
+                  <td>
+                    <% if association.average_rating.nil? %>
+                        No reviews yet
+                    <% else %>
+                        <%= number_with_precision(association.average_rating, :precision => 2) %>
+                    <% end %>
+                  </td>
+                  <td><%= link_to "View Reviews", reviews_professors_path(@professor.id, course.id), class: "link-blue" %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% else %>
+            <p>No courses have been added yet to this professor.</p>
+        <% end %>
+
+        <%= link_to 'Back', professors_path, class: "link-blue" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,15 +2,14 @@
   <div class="navbar-below">
     <div class="container">
       <p>Add an existing professor to this class: </p>
-          <%= form_for :add_professor, url: add_professor_courses_path do |form| %>
-              <%= form.select :professor_id, @other_professors.collect { |prof| [prof.full_name, prof.id] } %>
-              <%= form.hidden_field :course_id, :value => @course.id %>
-              <%= form.submit "Add Existing Professor", class: "btn btn-md btn-blue" %>
-          <% end %>
+      <%= form_for :add_professor, url: add_professor_courses_path do |form| %>
+          <%= form.select :professor_id, @other_professors.collect { |prof| [prof.full_name, prof.id] } %>
+          <%= form.hidden_field :course_id, :value => @course.id %>
+          <%= form.submit "Add Existing Professor", class: "btn btn-md btn-blue" %>
+      <% end %>
     </div>
   </div>
 <% end %>
-
 
 <div class="container">
   <div class="main-container">
@@ -19,12 +18,10 @@
       <div class="col-md-8">
         <h1><%= @course.title %></h1>
         <h2><%= @course.description %></h2>
-
       </div>
       <div class="col-md-4 ml-auto">
         <%= link_to 'Edit', edit_course_path(@course), class: "btn btn-md btn-custom btn-gray float-right" %>
         <%= link_to 'Add New Professor', new_professor_path(course_id: @course.id), class: "btn btn-md btn-custom btn-blue float-right" %>
-
       </div>
     </div>
     <div class="row">
