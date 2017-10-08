@@ -1,6 +1,14 @@
-<h1>Editing Course</h1>
+<div class="container">
+  <div class="main-container">
+    <p id="notice"><%= notice %></p>
+    <div class="row">
+      <div class="col-5 mx-auto">
+        <h1>Editing Course</h1>
 
-<%= render 'form', course: @course %>
+        <%= render 'form', course: @course %>
 
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>
+        <%= link_to 'Back', @course, class: "link-blue" %>
+      </div>
+    </div>
+  </div>
+</div>
