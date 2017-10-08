@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'pages#home'
   resources :professors, :except => [:destroy, :edit, :update] do
     collection do
       post :add_course
