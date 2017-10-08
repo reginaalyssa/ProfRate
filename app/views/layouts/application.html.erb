@@ -19,14 +19,9 @@
 
 <% unless action_name == "home" %>
   <%= render 'layouts/navbar' %>
-
-  <div class="container">
-    <%= yield %>
-  </div>
-<% else %>
-  <%= yield %>
 <% end %>
 
+<%= yield %>
 
 </body>
 </html>

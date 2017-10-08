@@ -1,22 +1,23 @@
-<div class="main-container">
-
-  <div class="row">
-    <p id="notice"><%= notice %></p>
-    <div class="col-md-10">
-      <h1>Courses</h1>
-      <p>View all of the existing courses or classes here. Know a course that hasn't been added yet? Feel free to add it!</p>
+<div class="container">
+  <div class="main-container">
+    <div class="row">
+      <p id="notice"><%= notice %></p>
+      <div class="col-md-10">
+        <h1>Courses</h1>
+        <p>View all of the existing courses or classes here. Know a course that hasn't been added yet? Feel free to add it!</p>
+      </div>
+      <div class="col-md-2 ml-auto">
+        <%= link_to 'New Course', new_course_path, class: "btn btn-md btn-custom btn-blue" %>
+      </div>
     </div>
-    <div class="col-md-2 ml-auto">
-      <%= link_to 'New Course', new_course_path, class: "btn btn-md btn-custom btn-blue" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <ul>
-        <% @courses.each do |course| %>
-            <li><%= link_to course.title, course %></li>
-        <% end %>
-      </ul>
+    <div class="row">
+      <div class="col-12">
+        <ul>
+          <% @courses.each do |course| %>
+              <li><%= link_to course.title, course %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
