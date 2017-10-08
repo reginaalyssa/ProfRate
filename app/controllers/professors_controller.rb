@@ -133,9 +133,10 @@ class ProfessorsController < ApplicationController
 
   def display_reviews_of_subject
     if Professor.exists?(params[:id]) and Course.exists?(params[:course_id])
-      @professor_id = params[:id]
-      @course_id = params[:course_id]
-      @reviews = Review.where(professor_id: @professor_id, course_id: @course_id)
+      @professor = Professor.find(params[:id])
+      @course = Course.find(params[:course_id])
+      @reviews = Review.where(professor_id: params[:id], course_id: params[:course_id])
+      @rating = CourseProfessorAssociation.find_by(professor_id: params[:id], course_id: params[:course_id]).formatted_average_rating
     else
       raise ActionController::RoutingError.new('Not Found')
     end

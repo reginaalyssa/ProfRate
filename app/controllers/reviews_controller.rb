@@ -50,6 +50,11 @@ class ReviewsController < ApplicationController
         professor.courses << course
         professor.save
       end
+      reviews = Review.where(course_id: params[:review][:course_id], professor_id: params[:review][:professor_id])
+      average = (reviews.sum(:rating) + @review.rating)/(reviews.count.to_f + 1)
+      course_professor_association = CourseProfessorAssociation.find_by(course_id: params[:review][:course_id], professor_id: params[:review][:professor_id])
+      course_professor_association.average_rating = average
+      course_professor_association.save
     end
     respond_to do |format|
       if @review.save
