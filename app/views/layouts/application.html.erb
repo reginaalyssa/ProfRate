@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Profrate</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%=	render 'layouts/rails_default' %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+<%= render 'layouts/header' %>
 
-  <body>
-    <%= yield %>
-  </body>
+<div class="container">
+  <%= yield %>
+</div>
+
+</body>
 </html>
