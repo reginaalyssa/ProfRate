@@ -1,24 +1,3 @@
-# README
+# ProfRate
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Supposedly a wordplay for *proofread* and a shortened made-up word for "Rate your/my/our Professor," **ProfRate** is a an application built using Ruby on Rails that lets you, as the title suggests, rate your professor. You can leave reviews (what we collectively call the ratings and comments) on your chosen professor for a specific subject. Ratings are on a scale of 1 to 5 (5 being the best, and 1 being the worst).
