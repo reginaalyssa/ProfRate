@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       get ':id/courses/:course_id', action: :display_reviews_of_subject, as: 'reviews'
     end
   end
-  resources :courses do
+  resources :courses, :except => [:destroy] do
     collection do
       post :add_professor
     end
