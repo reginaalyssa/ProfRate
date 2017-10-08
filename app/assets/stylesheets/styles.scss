@@ -3,7 +3,8 @@ $blue: #135acf;
 $dark-blue: #0d44a0;
 $orange: #ff9800;
 $dark-orange: #d6850d;
-$dark-gray: #353535;
+$dark-gray: #333333;
+$gray: #747474;
 
 /* universal */
 
@@ -68,10 +69,18 @@ body {
   padding: 0;
 }
 
-#profrate-navbar .navbar-nav .nav-item .nav-link {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #747474;
+#profrate-navbar .navbar-nav .nav-item {
+  &.active .nav-link {
+    color: $orange;
+  }
+  .nav-link {
+    font-weight: 600;
+    font-size: 1rem;
+    color: $gray;
+    &:hover {
+      color: $orange;
+    }
+  }
 }
 
 #main-navbar {
@@ -82,7 +91,7 @@ body {
 /* landing page styles */
 
 #home-page {
-  text-shadow: 1px 1px 2px #757575;
+  text-shadow: 1px 1px 2px $gray;
   h1 {
     font-size: 5rem;
     font-weight: bold;

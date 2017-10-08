@@ -10,9 +10,9 @@
 
     <div class="collapse navbar-collapse" id="profrate-navbar">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "Courses", courses_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "Professors", professors_path, class: "nav-link" %></li>
+        <li class="nav-item <%= is_active?(root_path) %>"><%= link_to "Home", root_path, class: "nav-link" %></li>
+        <li class="nav-item <%= is_active?(courses_path) %>"><%= link_to "Courses", courses_path, class: "nav-link" %></li>
+        <li class="nav-item <%= is_active?(professors_path) %>"><%= link_to "Professors", professors_path, class: "nav-link" %></li>
       </ul>
     </div>
   </div>
