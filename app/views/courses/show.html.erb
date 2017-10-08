@@ -1,15 +1,16 @@
-<div class="navbar-below">
-  <div class="container">
-    <p>Add an existing professor to this class: </p>
-    <% if !@other_professors.empty? %>
-        <%= form_for :add_professor, url: add_professor_courses_path do |form| %>
-            <%= form.select :professor_id, @other_professors.collect { |prof| [prof.full_name, prof.id] } %>
-            <%= form.hidden_field :course_id, :value => @course.id %>
-            <%= form.submit "Add Existing Professor", class: "btn btn-md btn-blue" %>
-        <% end %>
-    <% end %>
+<% if !@other_professors.empty? %>
+  <div class="navbar-below">
+    <div class="container">
+      <p>Add an existing professor to this class: </p>
+          <%= form_for :add_professor, url: add_professor_courses_path do |form| %>
+              <%= form.select :professor_id, @other_professors.collect { |prof| [prof.full_name, prof.id] } %>
+              <%= form.hidden_field :course_id, :value => @course.id %>
+              <%= form.submit "Add Existing Professor", class: "btn btn-md btn-blue" %>
+          <% end %>
+    </div>
   </div>
-</div>
+<% end %>
+
 
 <div class="container">
   <div class="main-container">
