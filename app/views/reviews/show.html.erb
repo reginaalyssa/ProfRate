@@ -8,7 +8,7 @@
         <p>
           <span class="text-bold">Average Rating:</span>
           <% if !@rating.nil? %>
-              <%= number_with_precision(@rating, :precision => 2) %>
+              <%= number_with_precision(@rating, :precision => 2) %> ★
           <% else %>
               No ratings yet for this course
           <% end %>
@@ -32,7 +32,7 @@
               <tbody>
               <% @reviews.each do |review| %>
                   <tr>
-                    <td><%= number_with_precision(review.rating, :precision => 2) %></td>
+                    <td><%= number_with_precision(review.rating, :precision => 2) %> ★</td>
                     <td><%= review.description %></td>
                   </tr>
               <% end %>

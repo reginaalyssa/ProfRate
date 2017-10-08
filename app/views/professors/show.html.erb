@@ -1,7 +1,7 @@
 <% if !@other_courses.empty? %>
   <div class="navbar-below">
     <div class="container">
-      <p>Add an existing professor to this class: </p>
+      <p>Add an existing course to this professor: </p>
       <%= form_for :add_course, url: add_course_professors_path do |form| %>
           <%= form.select :course_id, @other_courses.collect { |course| [course.title, course.id] } %>
           <%= form.hidden_field :professor_id, :value => @professor.id %>
@@ -20,7 +20,7 @@
         <p>
           <span class="text-bold">Average Rating:</span>
           <% if !@total_average_rating.nil? %>
-              <%= number_with_precision(@total_average_rating, :precision => 2) %>
+              <%= number_with_precision(@total_average_rating, :precision => 2) %> ★
           <% else %>
               No ratings yet
           <% end %>
@@ -50,7 +50,7 @@
                     <% if association.average_rating.nil? %>
                         No reviews yet
                     <% else %>
-                        <%= number_with_precision(association.average_rating, :precision => 2) %>
+                        <%= number_with_precision(association.average_rating, :precision => 2) %> ★
                     <% end %>
                   </td>
                   <td><%= link_to "View Reviews", show_reviews_path(@professor.id, course.id), class: "link-blue" %></td>
