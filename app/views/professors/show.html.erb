@@ -12,6 +12,8 @@
   <%= @professor.last_name %>
 </p>
 
+<p>Average Rating: <%= number_with_precision(@total_average_rating, :precision => 2) %></p>
+
 <% if @courses %>
     <table>
       <thead>

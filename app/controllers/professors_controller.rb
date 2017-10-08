@@ -13,6 +13,8 @@ class ProfessorsController < ApplicationController
     @courses = @professor.courses
     @other_courses = Course.all - @courses
     @course_professor_association = CourseProfessorAssociation.where(professor_id: @professor.id, course_id: @courses.select(:id)).select(:average_rating)
+    binding.pry
+    @total_average_rating = @course_professor_association.average(:average_rating)
   end
 
   # GET /professors/new
