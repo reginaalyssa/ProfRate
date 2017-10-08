@@ -3,6 +3,8 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
+    @course_id = params[:course_id]
+    @professor_id = params[:professor_id]
 
     # if course_id was passed as parameter, limit choices of courses
     if params[:course_id]

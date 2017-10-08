@@ -12,28 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :rating %>
-    <%= form.number_field :rating, id: :review_rating %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :review_description %>
-  </div>
-
-  <div class="field">
     <%= form.label :professor_id %>
-    <%= form.select :professor_id, @professors.collect { |prof| [prof.full_name, prof.id] } %>
-    <!--<%= form.text_field :professor_id, id: :review_professor_id %>-->
+    <%= form.select :professor_id, @professors.collect { |prof| [prof.full_name, prof.id] }, {}, {class: "form-control"} %>
   </div>
 
   <div class="field">
     <%= form.label :course_id %>
-    <%= form.select :course_id, @courses.collect { |course| [course.title, course.id] } %>
-    <!--<%= form.text_field :course_id, id: :review_course_id %>-->
+    <%= form.select :course_id, @courses.collect { |course| [course.title, course.id] }, {}, {class: "form-control"} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.number_field :rating, id: :review_rating, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :review_description, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Add Review", class: "btn btn-md btn-custom btn-blue form-control" %>
   </div>
 <% end %>
