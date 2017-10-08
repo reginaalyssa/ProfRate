@@ -15,8 +15,21 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
-    @professors = Professor.all
-    @courses = Course.all
+
+    # if course_id was passed as parameter, limit choices of courses
+    if params[:course_id]
+      @courses = [Course.find(params[:course_id])]
+    else
+      @courses = Course.all
+    end
+    binding.pry
+    # if professor_id was passed as parameter, limit choices of professors
+    if params[:professor_id]
+      @professors = [Professor.find(params[:professor_id])]
+    else
+      @professors = Professor.all
+    end
+
   end
 
   # GET /reviews/1/edit

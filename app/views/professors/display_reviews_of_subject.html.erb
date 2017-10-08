@@ -1,8 +1,10 @@
 <h1>Reviews</h1>
+
+<%= link_to 'Add Review', new_review_path(course_id: @course_id, professor_id: @professor_id) %>
+
 <% if !@reviews.empty? %>
   <% @reviews.each do |review| %>
       <p><%= review.formatted_rating %></p>
-        <% binding.pry %>
       <p><%= review.description %></p>
       <p><%= review.professor.full_name %></p>
       <p><%= review.course.title %></p>
