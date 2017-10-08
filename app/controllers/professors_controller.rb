@@ -5,6 +5,13 @@ class ProfessorsController < ApplicationController
   # GET /professors.json
   def index
     @professors = Professor.all
+    @total_average_ratings = []
+    @professors.each do |prof|
+      courses = prof.courses
+      course_professor_association = CourseProfessorAssociation.where(professor_id: prof.id, course_id: courses.select(:id)).select(:average_rating)
+      @total_average_ratings << course_professor_association.average(:average_rating)
+    end
+
   end
 
   # GET /professors/1

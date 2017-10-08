@@ -6,14 +6,15 @@
   <thead>
     <tr>
       <th>Full Name</th>
-      <th colspan="3"></th>
+      <th>Average Rating</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @professors.each do |professor| %>
+    <% @professors.zip(@total_average_ratings) do |professor, average_rating| %>
       <tr>
         <td><%= link_to professor.full_name, professor %></td>
+        <td><%= number_with_precision(average_rating, :precision => 2) %></td>
       </tr>
     <% end %>
   </tbody>
