@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
     else
       @courses = Course.all
     end
-    binding.pry
+
     # if professor_id was passed as parameter, limit choices of professors
     if params[:professor_id]
       @professors = [Professor.find(params[:professor_id])]
@@ -53,7 +53,8 @@ class ReviewsController < ApplicationController
     end
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+        format.html { redirect_to reviews_professors_path(id: params[:review][:professor_id], course_id: params[:review][:course_id]),
+                                  notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
         @professors = Professor.all

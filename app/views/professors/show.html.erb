@@ -18,8 +18,7 @@
     <% end %>
 <% end %>
 
-Others:
-<% if @other_courses %>
+<% if !@other_courses.empty? %>
     <%= form_for :add_course, url: add_course_professors_path do |form| %>
         <%= form.select :course_id, @other_courses.collect { |course| [course.title, course.id] } %>
         <%= form.hidden_field :professor_id, :value => @professor.id %>

@@ -10,18 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171007184036) do
+ActiveRecord::Schema.define(version: 20171008083330) do
+
+  create_table "course_professor_associations", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "professor_id"
+    t.float "average_rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "courses_professors", id: false, force: :cascade do |t|
-    t.integer "course_id", null: false
-    t.integer "professor_id", null: false
   end
 
   create_table "professors", force: :cascade do |t|

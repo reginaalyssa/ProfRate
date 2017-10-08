@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :reviews
   resources :professors do
     collection do
       post :add_course
@@ -11,5 +10,6 @@ Rails.application.routes.draw do
       post :add_professor
     end
   end
+  resources :reviews
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
