@@ -29,7 +29,7 @@
               <% if association.average_rating.nil? %>
                 No reviews yet
               <% else %>
-                <%= association.formatted_average_rating %>
+                <%= number_with_precision(association.average_rating, :precision => 2) %>
               <% end %>
             </td>
           </tr>

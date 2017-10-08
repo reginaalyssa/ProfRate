@@ -3,7 +3,7 @@
 <%= link_to 'Add Review', new_review_path(course_id: @course.id, professor_id: @professor.id) %>
 <h2><%= link_to @professor.full_name, professor_path(@professor.id) %></h2>
 <h3><%= link_to @course.title, course_path(@course.id) %></h3>
-<p>Average Rating: <%= @rating %></p>
+<p>Average Rating: <%= number_with_precision(@rating, :precision => 2) %></p>
 <% if !@reviews.empty? %>
   <table>
     <thead>
@@ -16,7 +16,7 @@
     <tbody>
       <% @reviews.each do |review| %>
         <tr>
-          <td><%= review.formatted_rating %></td>
+          <td><%= number_with_precision(review.rating, :precision => 2) %></td>
           <td><%= review.description %></td>
         </tr>
       <% end %>

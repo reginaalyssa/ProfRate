@@ -13,7 +13,6 @@ class ProfessorsController < ApplicationController
     @courses = @professor.courses
     @other_courses = Course.all - @courses
     @course_professor_association = CourseProfessorAssociation.where(professor_id: @professor.id, course_id: @courses.select(:id)).select(:average_rating)
-    binding.pry
     @total_average_rating = @course_professor_association.average(:average_rating)
   end
 
@@ -139,7 +138,7 @@ class ProfessorsController < ApplicationController
       @professor = Professor.find(params[:id])
       @course = Course.find(params[:course_id])
       @reviews = Review.where(professor_id: params[:id], course_id: params[:course_id])
-      @rating = CourseProfessorAssociation.find_by(professor_id: params[:id], course_id: params[:course_id]).formatted_average_rating
+      @rating = CourseProfessorAssociation.find_by(professor_id: params[:id], course_id: params[:course_id]).average_rating
     else
       raise ActionController::RoutingError.new('Not Found')
     end
