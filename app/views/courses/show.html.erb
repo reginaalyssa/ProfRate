@@ -47,7 +47,7 @@
                         <%= number_with_precision(association.average_rating, :precision => 2) %>
                     <% end %>
                   </td>
-                  <td><%= link_to "View Reviews", reviews_professors_path(prof.id, @course.id), class: "link-blue" %></td>
+                  <td><%= link_to "View Reviews", show_reviews_path(prof.id, @course.id), class: "link-blue" %></td>
                 </tr>
             <% end %>
             </tbody>
