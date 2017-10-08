@@ -5,10 +5,6 @@
       <div class="col-5 mx-auto">
         <h1>New Professor</h1>
 
-        <% if @course_title %>
-            <p><%= @course_title %></p>
-        <% end %>
-
         <%= render 'form', professor: @professor %>
 
         <%= link_to 'Back', professors_path, class: "link-blue" %>

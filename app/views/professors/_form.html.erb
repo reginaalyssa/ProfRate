@@ -11,6 +11,10 @@
     </div>
   <% end %>
 
+  <% if @course_title %>
+    <p class="text-muted">This will add a new professor and associate it with <%= @course_title %>.</p>
+  <% end %>
+
   <div class="field">
     <%= form.label :first_name %>
     <%= form.text_field :first_name, id: :professor_first_name, class: "form-control" %>
