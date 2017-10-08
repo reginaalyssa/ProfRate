@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :first_name %>
-    <%= form.text_field :first_name, id: :professor_first_name %>
+    <%= form.text_field :first_name, id: :professor_first_name, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :last_name %>
-    <%= form.text_field :last_name, id: :professor_last_name %>
+    <%= form.text_field :last_name, id: :professor_last_name, class: "form-control" %>
   </div>
 
   <% if @course_id %>
@@ -26,6 +26,6 @@
   <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Add Professor", class: "btn btn-md btn-custom btn-blue form-control" %>
   </div>
 <% end %>
