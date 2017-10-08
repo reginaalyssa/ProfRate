@@ -3,6 +3,7 @@ $blue: #135acf;
 $dark-blue: #0d44a0;
 $orange: #ff9800;
 $dark-orange: #d6850d;
+$dark-gray: #353535;
 
 /* universal */
 
@@ -14,7 +15,8 @@ html {
 
 body {
   height: 100%;
-  color: #353535;
+  background-color: white;
+  color: $dark-gray;
 }
 
 .full-height {
@@ -56,6 +58,25 @@ body {
     background-color: $dark-orange;
     color: white;
   }
+}
+
+/* navbar */
+
+.navbar-brand {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0;
+}
+
+#profrate-navbar .navbar-nav .nav-item .nav-link {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #747474;
+}
+
+#main-navbar {
+  background-color: white;
+  box-shadow: 0px 2px 40px 0px rgba(0,0,0,0.08);
 }
 
 /* landing page styles */

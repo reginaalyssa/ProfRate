@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-light navbar-default sticky-top" id="main-navbar">
+  <div class="container">
+    <%= link_to root_path, class: "navbar-brand" do %>
+        <span class="text-orange">Prof</span><span class="text-blue">Rate</span>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#profrate-navbar"
+            aria-controls="profrate-navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="profrate-navbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Courses", courses_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Professors", professors_path, class: "nav-link" %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
