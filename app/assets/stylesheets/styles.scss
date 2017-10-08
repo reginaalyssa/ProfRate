@@ -77,6 +77,10 @@ ul {
   list-style: none;
 }
 
+textarea {
+  resize: none;
+}
+
 a {
   color: $orange;
   &:hover {
