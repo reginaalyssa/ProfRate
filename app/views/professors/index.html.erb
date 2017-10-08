@@ -1,31 +1,47 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Professors</h1>
+<div class="container">
+  <div class="main-container">
+    <p id="notice"><%= notice %></p>
+    <div class="row">
+      <div class="col-md-8">
+        <h1>Professors</h1>
+      </div>
+      <div class="col-md-4 ml-auto">
+        <%= link_to 'New Professor', new_professor_path, class: "btn btn-md btn-custom btn-blue float-right" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <% if !@professors.empty? %>
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Average Rating</th>
+              </tr>
+              </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Full Name</th>
-      <th>Average Rating</th>
-    </tr>
-  </thead>
+              <tbody>
+              <% @professors.zip(@total_average_ratings) do |professor, average_rating| %>
+                  <tr>
+                    <td><%= link_to professor.full_name, professor %></td>
+                    <td>
+                      <% if average_rating.nil? %>
+                          No reviews yet
+                      <% else %>
+                          <%= number_with_precision(average_rating, :precision => 2) %>
+                      <% end %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+        <% else %>
+            <p>No professors have been added yet to ProfRate.</p>
+        <% end %>
 
-  <tbody>
-    <% @professors.zip(@total_average_ratings) do |professor, average_rating| %>
-      <tr>
-        <td><%= link_to professor.full_name, professor %></td>
-        <td>
-          <% if average_rating.nil? %>
-              No reviews yet
-          <% else %>
-              <%= number_with_precision(average_rating, :precision => 2) %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Professor', new_professor_path %>
+        <%= link_to 'Back', courses_path, class: "link-blue" %>
+      </div>
+    </div>
+  </div>
+</div>
