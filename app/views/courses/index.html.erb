@@ -12,11 +12,15 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <ul>
-          <% @courses.each do |course| %>
-              <li><%= link_to course.title, course %></li>
-          <% end %>
-        </ul>
+        <% if !@courses.empty? %>
+          <ul>
+            <% @courses.each do |course| %>
+                <li><%= link_to course.title, course %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No courses have been added yet to ProfRate.</p>
+        <% end %>
       </div>
     </div>
   </div>

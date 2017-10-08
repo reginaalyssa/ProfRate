@@ -48,6 +48,8 @@ class ReviewsController < ApplicationController
       else
         @professors = Professor.all
         @courses = Course.all
+        @course_id = params[:review][:course_id]
+        @professor_id = params[:review][:professor_id]
         format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
