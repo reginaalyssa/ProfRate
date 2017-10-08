@@ -12,6 +12,7 @@ class ProfessorsController < ApplicationController
   def show
     @courses = @professor.courses
     @other_courses = Course.all - @courses
+    @course_professor_association = CourseProfessorAssociation.where(professor_id: @professor.id, course_id: @courses.select(:id)).select(:average_rating)
   end
 
   # GET /professors/new

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :professors do
+  resources :professors, :except => [:destroy, :edit, :update] do
     collection do
       post :add_course
       get ':id/courses/:course_id', action: :display_reviews_of_subject, as: 'reviews'
