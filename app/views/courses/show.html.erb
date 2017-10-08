@@ -13,9 +13,29 @@
 </p>
 
 <% if @professors %>
-    <% @professors.each do |prof| %>
-      <p><%= link_to prof.full_name, professor_path(prof.id) %></p>
-    <% end %>
+    <table>
+      <thead>
+      <tr>
+        <th>Professor</th>
+        <th>Rating</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @professors.zip(@course_professor_association) do |prof, association| %>
+          <tr>
+            <td><%= link_to prof.full_name, reviews_professors_path(prof.id, @course.id) %></td>
+            <td>
+              <% if association.average_rating.nil? %>
+                No reviews yet
+              <% else %>
+                <%= association.formatted_average_rating %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
 <% end %>
 
 <% if !@other_professors.empty? %>
